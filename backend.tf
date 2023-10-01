@@ -1,6 +1,6 @@
 terraform {
   backend "azurerm" {
-    resource_group_name = "terraform-rg-${random_string.myrandom.id}"
+    resource_group_name = "myrg"
     storage_account_name = "ethanssa"
     container_name = "mycontainer"
     key = "terraform.tfstate"
