@@ -26,7 +26,7 @@ resource "random_string" "myrandom" {
 
 # Resource group
 resource "azurerm_resource_group" "myrg" {
-  name     = "myrg"
+  name     = "terraform-rg-${random_string.myrandom.id}"
   location = "eastus"
 }
 
