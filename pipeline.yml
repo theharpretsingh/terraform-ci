@@ -1,0 +1,28 @@
+pool:
+  name: Azure Pipelines
+steps:
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+  displayName: 'Terraform : azurerm'
+  inputs:
+    backendServiceArm: 'Free Trial (3bef4da6-d2bb-445a-9e21-af462f9dd659)'
+    backendAzureRmResourceGroupName: myrg
+    backendAzureRmStorageAccountName: ethanssa
+    backendAzureRmContainerName: mycontainer
+    backendAzureRmKey: terraform.tfstate
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+  displayName: 'Terraform : azurerm'
+  inputs:
+    command: validate
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+  displayName: 'Terraform : azurerm'
+  inputs:
+    command: plan
+    environmentServiceNameAzureRM: 'Free Trial (3bef4da6-d2bb-445a-9e21-af462f9dd659)'
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+  displayName: 'Terraform : azurerm'
+  inputs:
+    command: apply
+    environmentServiceNameAzureRM: 'Free Trial (3bef4da6-d2bb-445a-9e21-af462f9dd659)'
